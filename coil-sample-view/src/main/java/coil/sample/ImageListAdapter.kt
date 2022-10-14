@@ -36,7 +36,7 @@ class ImageListAdapter(
 
             var placeholder: MemoryCache.Key? = null
 
-            val videoUri = Uri.parse("file:///android_asset/video.mp4")
+            val videoUri = Uri.parse("file:///android_asset/video")
 
             println("loading video file $videoUri")
             load(videoUri) {
