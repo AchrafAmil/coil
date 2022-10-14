@@ -2,6 +2,7 @@ package coil.sample
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -9,6 +10,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.decode.VideoFrameDecoder
 import coil.load
 import coil.memory.MemoryCache
 import coil.sample.ImageListAdapter.ViewHolder
@@ -34,7 +36,11 @@ class ImageListAdapter(
 
             var placeholder: MemoryCache.Key? = null
 
-            load(item.uri) {
+            val videoUri = Uri.parse("file:///android_asset/video.mp4")
+
+            println("loading video file $videoUri")
+            load(videoUri) {
+                decoderFactory(VideoFrameDecoder.Factory())
                 placeholder(ColorDrawable(item.color))
                 error(ColorDrawable(Color.RED))
                 parameters(item.parameters)
